@@ -34,20 +34,28 @@ IMAGE_PATHS = {
 
 MAP_NAME = "level_1_map.png"
 
-
-#SIDESCROLL_BOUNDS = 50 #how many pixels the player can move before sidescrolling takes place
-
 class Main:
     def __init__(self):
         self.screen = pygame.display.set_mode((SCREEN_X, SCREEN_Y))
         self.clock = pygame.time.Clock()
         self.renderer = Render.Render(self.screen, pygame, COLORS, SPRITE_SIZE, SIZE_MULTIPLIER)
-        self.items = GenerateMap.getLevelMap(MAP_NAME, COLORS, SPRITE_SIZE, DEFAULT_ITEMS)
         self.mouseX = 0
         self.mouseY = 0
+        self.inventory = [] #inventory is going to be organized like so: t, so depending on the block type you will know what to place down
        
     def mousePos(self):
         return pygame.mouse.get_pos()
+
+    def loadLevel(self, level):
+        if(level == 1):
+            sizeX = 15
+            sizeY = 10
+            imagePaths = ["l1/0.png"]
+
+            for x in range(sizeX):
+                imagePaths.append("l1/%d" % (x))
+
+        return(self.GenerateMap.getLevelMap(imagePaths))
 
     def mainLoop(self):
         while True:
