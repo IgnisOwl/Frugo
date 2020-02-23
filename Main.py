@@ -75,7 +75,7 @@ class Main:
 
     def mainLoop(self):
         while True:
-            self.posX,self.posY,self.velX,self.velY = moveTick.moveTick(self.posX, self.posY, self.velX, self.velY, self.currentDim, self.cells, SPRITE_SIZE,SIZE_MULTIPLIER)
+            self.posX,self.posY,self.velX,self.velY,self.currentDim = moveTick.moveTick(self.posX, self.posY, self.velX, self.velY, self.currentDim, self.cells, SPRITE_SIZE,SIZE_MULTIPLIER)
             for event in pygame.event.get():
                                                                                                                                                                                                                                                                                                         
                 if(event.type == pygame.QUIT):
