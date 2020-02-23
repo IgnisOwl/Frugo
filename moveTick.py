@@ -4,7 +4,7 @@ import pygame
 
 
 def gravity(velX, velY): #function for getting updated gravity, note that it does not handle any type of collision detection
-    velY = velY - 0.5
+    velY = velY + 0.5
     return(velX, velY)
 
 def posFromVel(posX, posY, velX, velY):
@@ -108,13 +108,13 @@ def collision(objects, posX, posY, dim, sprite_size, size_multiplier, player_siz
                         else:
                             if(isPortal(objects[sliceIndex][cellIndex])[0] == True):
                                 portalCounter+=1 #for the countdown
-                                print(portalCounter)
+                                #print(portalCounter)
                                 if(isPortal(objects[sliceIndex][cellIndex])[1] == 0 or isPortal(objects[sliceIndex][cellIndex])[1] == 2):
-                                    if(portalCounter>150):#reached time
+                                    if(portalCounter>50):#reached time
                                         portalCounter = 0
                                         return(True, 1, portalCounter)
-                    else:
-                            portalCounter = 0
+                    #else:
+                    #        portalCounter = 0
 
     return(False, dim, portalCounter)
 
