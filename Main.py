@@ -4,8 +4,8 @@ import GenerateMap
 import moveTick
 import os
 
-SCREEN_X = 700
-SCREEN_Y = 700
+SCREEN_X = 320
+SCREEN_Y = 320
 #this means the level map is SPRITE_SIZE*AmountOfWalls = SCREEN_X or SCREEN_Y
 
 FPS = 60
@@ -21,7 +21,7 @@ COLORS = {
 }
 
 SPRITE_SIZE = 32
-SIZE_MULTIPLIER = 1.8 #size multiplier, to make bigger or smaller
+SIZE_MULTIPLIER = 1 #size multiplier, to make bigger or smaller
 
 #cell list is like: [[[[t,h], [t,h]]]] - thre reason we need height is because if we wanted an empty space right below solid block.
 CELLS = [[[[ ]]]] #y[x[cell[th[]]]]
