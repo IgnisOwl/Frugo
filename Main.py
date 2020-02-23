@@ -23,8 +23,8 @@ COLORS = {
 SPRITE_SIZE = 50
 SIZE_MULTIPLIER = 1 #size multiplier, to make bigger or smaller
 
-#cell list is like: [[[[t,h], [t,h]]]]
-CELLS = [[[[ ]]]
+#cell list is like: [[[[t,h], [t,h]]]] - thre reason we need height is because if we wanted an empty space right below solid block.
+CELLS = [[[[ ]]]] #y[x[cell[th[]]]]
 
 #dictionary of all the paths to sprites
 IMAGE_PATHS = {
@@ -50,19 +50,17 @@ class Main:
         if(level == 1):
             sizeX = 15
             sizeY = 10
-            imagePaths = ["l1/0.png"]
+            imagePaths = [""]
 
             for x in range(sizeX):
-                imagePaths.append("l1/%d" % (x))
+                imagePaths.append("l1/%d" % (x)) #for each slic add one
 
         return(self.GenerateMap.getLevelMap(imagePaths))
 
     def mainLoop(self):
         while True:
             for event in pygame.event.get():
-                ##########CCCCCHANGE LATER: !!!!!!!!!!
-                self.items[0][1:3], self.items[0][5:7] = moveTick.moveTick(self.items[0][1:3:], self.items[0][5:7], SPRITE_SIZE, self.items[1:], event)
-                
+                                                                                                                                                                                                                                                                                                        
                 if(event.type == pygame.QUIT):
                     pygame.quit()
             
