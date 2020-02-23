@@ -7,7 +7,7 @@ class Render:
         self.sprite_size = spriteSize
     
     def render(self, objects, sprite_image_paths, dimension, playerX, playerY):
-        self.screen.fill(self.colors["WHITE"])
+        self.screen.fill(self.colors["BLACK"])
         
         #get the current object we are handling in all the objects provided
         for sliceIndex in range(len(objects)):
@@ -49,10 +49,12 @@ class Render:
                         objectY = round((len(objects) - sliceIndex) * self.sprite_size * self.size_multiplier)
                         
                         objectImg = self.pygame.image.load(sprite_image_paths["background"])
+                        objectImg = self.pygame.transform.scale(objectImg, (round(self.sprite_size * self.size_multiplier), round(self.sprite_size * self.size_multiplier)))
                         self.screen.blit(objectImg, (objectX, objectY))
                     
                     
                     playerImg = self.pygame.image.load(sprite_image_paths["player_1"])
+                    playerImg = self.pygame.transform.scale(playerImg, (round(self.sprite_size * self.size_multiplier), round(self.sprite_size * self.size_multiplier)))
                     self.screen.blit(playerImg, (playerX, playerY))
                     
                 elif(dimension == 1):
