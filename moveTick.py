@@ -56,12 +56,14 @@ def moveTick(posX, posY, velX, velY, dim, objects, sprite_size, size_multiplier)
     #now calculate the positions and if they should apply from the velocities
     possibleX, possibleY = posFromVel(posX, posY, velX, velY)
     #now check if the collision happens, if it does, don't actually update the values
-    if(not collision(objects, possibleX, possibleY, dim, sprite_size, size_multiplier)):
+
+    col = collision(objects, possibleX, possibleY, dim, sprite_size, size_multiplier)
+    if(not col[0]):
         posX, posY = possibleX, possibleY
     else:
         velX, velY = -(velX/bounceDampening), -(velY/bounceDampening)
 
-    return(posX, posY, velX, velY)
+    return(posX, posY, velX, velY, col[1])
 
 
 
@@ -82,13 +84,14 @@ def collision(objects, posX, posY, dim, sprite_size, size_multiplier):
                            posX+(sprite_size* size_multiplier) > wallX and posX+(sprite_size* size_multiplier) < wallX+wall_width and posY+(sprite_size* size_multiplier)>wallY and posY+(sprite_size* size_multiplier)<wallY+wall_width): #if its in the bounds
                         if(not isPassable(objects[sliceIndex][cellIndex][0][0])):
 
-                            return(True)
+                            return(True, dim)
                         else:
                             if(not isPortal(objects[sliceIndex][cellIndex]) == False):
-                                pass
+                                if(isPortal(objects[sliceIndex][cellIndex]) == 0 or isPortal(objects[sliceIndex][cellIndex]) == 2):
+                                    return(True, 1)
                                 #print(isPortal(objects[sliceIndex][cellIndex]))
 
-    return(False)
+    return(False, dim)
 
 def isPassable(wallType):
     if(wallType == "portal" or wallType == "goal"):
