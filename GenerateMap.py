@@ -61,7 +61,7 @@ def getSpawnLocation(objects, levelvarthing):
     elif(levelvarthing == 2):
         return(0,2)
     elif(levelvarthing == 3):
-        return(0,4)
+        return(8,0)
     elif(levelvarthing == 4):
         return(0,15)
     
