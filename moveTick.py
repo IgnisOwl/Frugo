@@ -26,9 +26,21 @@ def dampVelocity(velX, velY, dampFactor):
     if(velY > 0):
         velY = velY - dampFactor
 
+
+    #to fix drifting:
+    if(velX<dampFactor and velX>0):
+        velX = 0
+    if(velX>-dampFactor and velX<0):
+        velX = 0
+
+    if(velY<dampFactor and velY>0):
+        velY = 0
+    if(velY>-dampFactor and velY<0):
+        velY = 0
+
     return(velX, velY)
 
-def moveTick(posX, posY, velX, velY, dim, objects, sprite_size, size_multiplier, player_size):
+def moveTick(posX, posY, velX, velY, dim, objects, sprite_size, size_multiplier, player_size, portalCounter):
     acceleration = 2
     maxSpeed = 5 #not implemented yet
     damping = 0.7 #basically the friction
@@ -52,21 +64,27 @@ def moveTick(posX, posY, velX, velY, dim, objects, sprite_size, size_multiplier,
         if key[pygame.K_s]:
             if(velY <= maxSpeed):
                 velY = velY + acceleration
+
+    
+    if(dim == 1):
+        velX, velY = gravity(velX, velY);
+
     #now calculate the positions and if they should apply from the velocities
     possibleX, possibleY = posFromVel(posX, posY, velX, velY)
     #now check if the collision happens, if it does, don't actually update the values
 
-    col = collision(objects, possibleX, possibleY, dim, sprite_size, size_multiplier, player_size)
+    col = collision(objects, possibleX, possibleY, dim, sprite_size, size_multiplier, player_size, portalCounter)
     if(not col[0]):
         posX, posY = possibleX, possibleY
     else:
         velX, velY = -(velX/bounceDampening), -(velY/bounceDampening)
+        
 
-    return(posX, posY, velX, velY, col[1])
+    return(posX, posY, velX, velY, col[1], col[2])
 
 
 
-def collision(objects, posX, posY, dim, sprite_size, size_multiplier, player_size):
+def collision(objects, posX, posY, dim, sprite_size, size_multiplier, player_size, portalCounter):
     
     
     leway = 10
@@ -86,14 +104,19 @@ def collision(objects, posX, posY, dim, sprite_size, size_multiplier, player_siz
                            posX+(player_size* size_multiplier)  > wallX and posX+(player_size* size_multiplier)  < wallX+wall_width and posY+(player_size* size_multiplier)  >wallY and posY+(player_size* size_multiplier)  <wallY+wall_width): #if its in the bounds
                         if(not isPassable(objects[sliceIndex][cellIndex][0][0])):
 
-                            return(True, dim)
+                            return(True, dim, portalCounter)
                         else:
-                            if(not isPortal(objects[sliceIndex][cellIndex]) == False):
-                                if(isPortal(objects[sliceIndex][cellIndex]) == 0 or isPortal(objects[sliceIndex][cellIndex]) == 2):
-                                    return(True, 1)
-                                #print(isPortal(objects[sliceIndex][cellIndex]))
+                            if(isPortal(objects[sliceIndex][cellIndex])[0] == True):
+                                portalCounter+=1 #for the countdown
+                                print(portalCounter)
+                                if(isPortal(objects[sliceIndex][cellIndex])[1] == 0 or isPortal(objects[sliceIndex][cellIndex])[1] == 2):
+                                    if(portalCounter>150):#reached time
+                                        portalCounter = 0
+                                        return(True, 1, portalCounter)
+                    else:
+                            portalCounter = 0
 
-    return(False, dim)
+    return(False, dim, portalCounter)
 
 def isPassable(wallType):
     if(wallType == "portal" or wallType == "goal"):
@@ -104,6 +127,6 @@ def isPassable(wallType):
 def isPortal(block):
     z=0
     if(block[z][0] == "portal"):
-        return(block[z][2]) #portal type
+        return(True, block[z][2]) #portal type
     else:
-        return(False)
+        return(False, None)

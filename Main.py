@@ -43,7 +43,14 @@ IMAGE_PATHS = {
 
 class Main:
     def __init__(self):
+        #vel and pos for player:
+        self.velX = 0
+        self.velY = 0
+        self.posX = 0
+        self.posY = 0
+        self.pz = 0 #player z, will not change like y does
         self.cells, map_x, map_y = self.loadLevel(3)
+        
         screen_x = map_x * SPRITE_SIZE * SIZE_MULTIPLIER
         screen_y = map_y * SPRITE_SIZE * SIZE_MULTIPLIER
 
@@ -53,12 +60,8 @@ class Main:
         self.mouseX = 0
         self.mouseY = 0
 
-        #vel and pos for player:
-        self.velX = 0
-        self.velY = 0
-        self.posX = 0
-        self.posY = 0
-        self.pz = 0 #player z, will not change like y does
+        self.portalCounter = 0
+
 
         self.currentDim = 1 #current Dimension
 
@@ -73,11 +76,15 @@ class Main:
         for x in range(len(os.listdir("Levels/l%s" % level))):
             imagePaths.append("Levels/l%s/%d.png" % (level, x)) #for each slice add one
 
-        return(GenerateMap.getLevelMap(imagePaths))
+        map = GenerateMap.getLevelMap(imagePaths)
+        x,y = GenerateMap.getSpawnLocation(map) 
+        self.posX = x * PLAYER_SIZE * SIZE_MULTIPLIER
+        self.posY = y * PLAYER_SIZE * SIZE_MULTIPLIER
+        return(map)
 
     def mainLoop(self):
         while True:
-            self.posX,self.posY,self.velX,self.velY,self.currentDim = moveTick.moveTick(self.posX, self.posY, self.velX, self.velY, self.currentDim, self.cells, SPRITE_SIZE,SIZE_MULTIPLIER, PLAYER_SIZE)
+            self.posX,self.posY,self.velX,self.velY,self.currentDim, self.portalCounter = moveTick.moveTick(self.posX, self.posY, self.velX, self.velY, self.currentDim, self.cells, SPRITE_SIZE,SIZE_MULTIPLIER, PLAYER_SIZE, self.portalCounter)
             for event in pygame.event.get():
                                                                                                                                                                                                                                                                                                         
                 if(event.type == pygame.QUIT):
