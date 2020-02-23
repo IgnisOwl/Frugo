@@ -1,33 +1,38 @@
 import pygame
 
 #Decides new positional data depending on User Input
-def moveTick(pos,velo,height,walls, event):
-    if event.type == pygame.KEYDOWN:
-        if event.key == pygame.K_a or event.key == pygame.K_LEFT:
-            velo[0]=-20
-            pos[0]+=velo[0]
-        if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
-            velo[0]=20
-            pos[0]+=velo[0]
-        if onGround(height,walls, pos):
-            if event.key == pygame.K_w or event.key == pygame.K_SPACE or event.key == pygame.K_UP:
-                velo[1]=25
-                pos[1]+=velo[1]
+def moveTick(pos1,pos2,velo1,velo2,height,walls,event,dim):#vlo 1 is left right, velo 2 is up down. dim is bool, 1 if there is y and if there is gravity
+    if event.type == event.KEYDOWN:
+        if event.key == event.K_A or event.key == event.K_LEFT:
+            velo1=-20
+            pos1+=velo1
+        if event.key == event.K_D or event.key == event.K_RIGHT:
+            velo1=20
+            pos1+=velo1
+        if not dim:
+            if event.key == event.K_D or event.key == event.K_DOWN:
+                velo2=20
+                pos2+=velo2
+            if event.key == event.K_S or event.key == event.K_UP or event.key == event.K_SPACE:
+                velo2=-20
+                pos2+=velo2
         else:
-            velo[1]-=5
-            if velo[1]<-40:
-                velo[1]=-40
-            pos[1]+=velo[1]
-    elif event.type == pygame.KEYUP:
-        if event.key == pygame.K_a or event.key == pygame.K_LEFT:
-            velo[0]=0
-        if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
-            velo[0]=0
+            if onGround(height,walls,dim,pos2):
+                if event.key == event.K_w or event.key == event.K_SPACE or event.key == event.K_UP:
+                    velo2=25
+                    pos2+=velo2
+            else:
+                velo2-=1
+                if velo2<-40:
+                    velo2=-40
+                pos2+=velo2
+    elif event.type == event.KEYUP:
+        if event.key == event.K_a or event.key == event.K_LEFT:
+            velo1=0
+        if event.key == event.K_d or event.key == event.K_RIGHT:
+            velo1=0
     return pos,velo
 
-def onGround(height,walls, pos):
-    w=False
-    for a in walls:
-        if a[2]==(height+pos[1]):
-            w=True
-    return w
+def onGround(height,walls,dim,pos):
+    pass
+    #to be implimented for based on needs
