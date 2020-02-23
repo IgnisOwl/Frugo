@@ -38,16 +38,16 @@ class Render:
                             objectImg = self.pygame.image.load(sprite_image_paths["goal"])
                     
                         objectX = round(cellIndex * self.sprite_size * self.size_multiplier)
-                        objectY = round((len(objects) - sliceIndex - 1) * self.sprite_size * self.size_multiplier)
-                        print("object x = " + str(cellIndex) + ", and the object y = " + str(sliceIndex))
-                        print("the slice is:")
-                        print(objects[sliceIndex])
+                        objectY = round(sliceIndex * self.sprite_size * self.size_multiplier)
+                        #print("object x = " + str(cellIndex) + ", and the object y = " + str(sliceIndex))
+                        #print("the slice is:")
+                        #print(objects[sliceIndex])
                         objectImg = self.pygame.transform.scale(objectImg, (round(self.sprite_size * self.size_multiplier), round(self.sprite_size * self.size_multiplier)))
                         self.screen.blit(objectImg, (objectX, objectY))
                     
                     else:
                         objectX = round(cellIndex * self.sprite_size * self.size_multiplier)
-                        objectY = round((len(objects) - sliceIndex - 1) * self.sprite_size * self.size_multiplier)
+                        objectY = round(sliceIndex * self.sprite_size * self.size_multiplier)
                         
                         objectImg = self.pygame.image.load(sprite_image_paths["background"])
                         objectImg = self.pygame.transform.scale(objectImg, (round(self.sprite_size * self.size_multiplier), round(self.sprite_size * self.size_multiplier)))
