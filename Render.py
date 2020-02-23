@@ -13,22 +13,26 @@ class Render:
         for sliceIndex in range(len(objects)):
             #if the object is a player, get the sprite based on the facing, and gun position
             for cellIndex in range(len(objects[sliceIndex])):
-                #print(objects[sliceIndex][cellIndex])
-        
+                #print(objects[sliceIndex])
                   #  objectImg = self.pygame.image.load(sprite_image_paths["player_1"])
                 #elif(object[3] == "left"):
                 #    objectImg = self.pygame.image.load(sprite_image_paths["player_2"])
+                if(len(objects[sliceIndex][cellIndex])> 0):
+                    #print(objects[sliceIndex][cellIndex])
+                    if(objects[sliceIndex][cellIndex][0][0] == "wall"): #0 is automatically the top, because the way the map generates, the top is added in last
+                    #if(objects[sliceIndex][cellIndex][self.getTop(objects[sliceIndex][cellIndex])][0] == "wall"):
+                        objectImg = self.pygame.image.load(sprite_image_paths["solid_wall"])
+                else:
+                    objectImg = self.pygame.image.load(sprite_image_paths["player_1"])
                     
-            #if(object[0][0:6] == "wall"):
-                objectImg = self.pygame.image.load(sprite_image_paths["solid_wall"])
-                    
-            objectX = round(cellIndex * self.sprite_size * self.size_multiplier)
-            objectY = round((len(objects) - sliceIndex) * self.sprite_size * self.size_multiplier)
+                objectX = round(cellIndex * self.sprite_size * self.size_multiplier)
+                objectY = round((len(objects) - sliceIndex) * self.sprite_size * self.size_multiplier)
             
-            objectImg = self.pygame.transform.scale(objectImg, (round(self.sprite_size * self.size_multiplier), round(self.sprite_size * self.size_multiplier)))
-            self.screen.blit(objectImg, (objectX, objectY))
+                objectImg = self.pygame.transform.scale(objectImg, (round(self.sprite_size * self.size_multiplier), round(self.sprite_size * self.size_multiplier)))
+                self.screen.blit(objectImg, (objectX, objectY))
         
         self.pygame.display.update()
+
 
 #beans
         

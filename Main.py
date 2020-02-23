@@ -21,7 +21,7 @@ COLORS = {
 }
 
 SPRITE_SIZE = 50
-SIZE_MULTIPLIER = 0.4 #size multiplier, to make bigger or smaller
+SIZE_MULTIPLIER = 1 #size multiplier, to make bigger or smaller
 
 #cell list is like: [[[[t,h], [t,h]]]] - thre reason we need height is because if we wanted an empty space right below solid block.
 CELLS = [[[[ ]]]] #y[x[cell[th[]]]]
