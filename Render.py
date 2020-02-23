@@ -97,7 +97,6 @@ class Render:
         elif(dimension == 2):
             #slice number is distance from left
             print("fuck you x2")
-        print(objects[0])
 
         self.pygame.display.update()
 

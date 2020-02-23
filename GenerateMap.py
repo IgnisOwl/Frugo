@@ -53,4 +53,4 @@ def getLevelMap(paths):
 
             map[i].append(cell)
                 #cell will now contain the various blocks at different heights for one cell
-    return(map)
+    return(map, imageXW, imageYW)
