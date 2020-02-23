@@ -28,7 +28,7 @@ def dampVelocity(velX, velY, dampFactor):
 
     return(velX, velY)
 
-def moveTick(posX, posY, velX, velY, dim, objects, sprite_size, size_multiplier):
+def moveTick(posX, posY, velX, velY, dim, objects, sprite_size, size_multiplier, player_size):
     acceleration = 2
     maxSpeed = 5 #not implemented yet
     damping = 0.7 #basically the friction
@@ -56,7 +56,7 @@ def moveTick(posX, posY, velX, velY, dim, objects, sprite_size, size_multiplier)
     possibleX, possibleY = posFromVel(posX, posY, velX, velY)
     #now check if the collision happens, if it does, don't actually update the values
 
-    col = collision(objects, possibleX, possibleY, dim, sprite_size, size_multiplier)
+    col = collision(objects, possibleX, possibleY, dim, sprite_size, size_multiplier, player_size)
     if(not col[0]):
         posX, posY = possibleX, possibleY
     else:
@@ -66,7 +66,7 @@ def moveTick(posX, posY, velX, velY, dim, objects, sprite_size, size_multiplier)
 
 
 
-def collision(objects, posX, posY, dim, sprite_size, size_multiplier):
+def collision(objects, posX, posY, dim, sprite_size, size_multiplier, player_size):
     
     
     leway = 10
@@ -81,9 +81,9 @@ def collision(objects, posX, posY, dim, sprite_size, size_multiplier):
                     wallType = objects[sliceIndex][cellIndex][0][0]
 
                     if(posX > wallX and posX  < wallX+wall_width and posY  > wallY and posY < wallY+wall_width or
-                           posX+(sprite_size* size_multiplier)  > wallX and posX+(sprite_size* size_multiplier)  < wallX+(sprite_size* size_multiplier) and posY  > wallY and posY  < wallY+wall_width or
-                           posX > wallX and posX < wallX + wall_width and posY+(sprite_size* size_multiplier) > wallY and posY+(sprite_size* size_multiplier) < wallY+wall_width or
-                           posX+(sprite_size* size_multiplier)  > wallX and posX+(sprite_size* size_multiplier)  < wallX+wall_width and posY+(sprite_size* size_multiplier)  >wallY and posY+(sprite_size* size_multiplier)  <wallY+wall_width): #if its in the bounds
+                           posX+(player_size* size_multiplier)  > wallX and posX+(player_size* size_multiplier)  < wallX+(player_size* size_multiplier) and posY  > wallY and posY  < wallY+wall_width or
+                           posX > wallX and posX < wallX + wall_width and posY+(player_size* size_multiplier) > wallY and posY+(player_size* size_multiplier) < wallY+wall_width or
+                           posX+(player_size* size_multiplier)  > wallX and posX+(player_size* size_multiplier)  < wallX+wall_width and posY+(player_size* size_multiplier)  >wallY and posY+(player_size* size_multiplier)  <wallY+wall_width): #if its in the bounds
                         if(not isPassable(objects[sliceIndex][cellIndex][0][0])):
 
                             return(True, dim)
