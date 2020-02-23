@@ -88,9 +88,9 @@ class Render:
                         elif(objectType == "portal"):
                             portalType = objects[renderSlice][renderCell][0][2]
                             if(portalType == 0):
-                                objectImg = self.pygame.image.load(sprite_image_paths["portal_1"])
+                                objectImg = self.pygame.image.load(sprite_image_paths["s_portal_1"])
                             elif(portalType == 2):
-                                objectImg = self.pygame.image.load(sprite_image_paths["portal_3"])
+                                objectImg = self.pygame.image.load(sprite_image_paths["s_portal_3"])
                         elif(objectType == "goal"):
                             objectImg = self.pygame.image.load(sprite_image_paths["side_goal"])
                             
@@ -137,10 +137,10 @@ class Render:
                             objectImg = self.pygame.image.load(sprite_image_paths["wall"])
                         elif(objectType == "portal"):
                             portalType = objects[renderSlice][renderCell][0][2]
-                            if(portalType == 0):
-                                objectImg = self.pygame.image.load(sprite_image_paths["portal_1"])
-                            elif(portalType == 2):
-                                objectImg = self.pygame.image.load(sprite_image_paths["portal_3"])
+                            if(portalType == 1):
+                                objectImg = self.pygame.image.load(sprite_image_paths["s_portal_2"])
+                            elif(portalType == 3):
+                                objectImg = self.pygame.image.load(sprite_image_paths["s_portal_4"])
                         elif(objectType == "goal"):
                             objectImg = self.pygame.image.load(sprite_image_paths["side_goal"])
                             
