@@ -137,7 +137,8 @@ def collision(objects, posX, posY, dim, sprite_size, size_multiplier, player_siz
         for renderCell in range(len(objects[renderSlice])):
             for verticalBlockIndex in range(len(objects[renderSlice][renderCell])):
                 wallX = round(renderCell * sprite_size * size_multiplier)
-                wallY = round(sprite_size * size_multiplier * 9 - sprite_size * size_multiplier *verticalBlockIndex) #9 change
+                #####IN THE FTURUE: set 9 to the height of image, it only is for level 3
+                wallY = round(sprite_size * size_multiplier * 9 - sprite_size * size_multiplier *verticalBlockIndex)
                 #print(posY)
                 #print(posX)
                 #print(wallY)
