@@ -40,7 +40,7 @@ IMAGE_PATHS = {
     "spawn" : "assets/spawn.png",
     "background": "assets/background.png",
     "side_background": "assets/gray_background.png",
-    
+
 }
 
 class Main:
@@ -61,11 +61,14 @@ class Main:
         self.renderer = Render.Render(self.screen, pygame, COLORS, SPRITE_SIZE, SIZE_MULTIPLIER, PLAYER_SIZE)
         self.mouseX = 0
         self.mouseY = 0
+        self.renderSlice = 0
+
 
         self.portalCounter = 0
 
 
-        self.currentDim = 2 #current Dimension
+
+        self.currentDim = 0 #current Dimension
 
         self.inventory = [] #inventory is going to be organized like so: t, so depending on the block type you will know what to place down
        
@@ -86,14 +89,14 @@ class Main:
 
     def mainLoop(self):
         while True:
-            self.posX,self.posY,self.velX,self.velY,self.currentDim, self.portalCounter = moveTick.moveTick(self.posX, self.posY, self.velX, self.velY, self.currentDim, self.cells, SPRITE_SIZE,SIZE_MULTIPLIER, PLAYER_SIZE, self.portalCounter)
+            self.posX,self.posY,self.velX,self.velY,self.currentDim, self.portalCounter, self.renderSlice = moveTick.moveTick(self.posX, self.posY, self.velX, self.velY, self.currentDim, self.cells, SPRITE_SIZE,SIZE_MULTIPLIER, PLAYER_SIZE, self.portalCounter, self.renderSlice)
             for event in pygame.event.get():
                                                                                                                                                                                                                                                                                                         
                 if(event.type == pygame.QUIT):
                     pygame.quit()
             
             
-            self.renderer.render(self.cells, IMAGE_PATHS, self.currentDim, self.posX, self.posY)
+            self.renderer.render(self.cells, IMAGE_PATHS, self.currentDim, self.posX, self.posY, self.renderSlice)
             self.clock.tick(FPS)
             
 if __name__ == "__main__":

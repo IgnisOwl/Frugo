@@ -75,7 +75,7 @@ class Render:
                     self.screen.blit(objectImg, (objectX, objectY))
             
             for renderCell in range(len(objects[renderSlice])):
-                print("render cell: " + str(renderCell))
+                #print("render cell: " + str(renderCell))
                 if(len(objects[renderSlice][renderCell])> 0):
                     #verticalBlockIndex is the index for how many solid blocks the current block is from the top block
                     for verticalBlockIndex in range(len(objects[renderSlice][renderCell])):
@@ -103,13 +103,17 @@ class Render:
                 #else:                
                 
                 
-                        playerImg = self.pygame.image.load(sprite_image_paths["player_1"])
-                        playerImg = self.pygame.transform.scale(playerImg, (round(self.sprite_size * self.size_multiplier), round(self.sprite_size * self.size_multiplier)))
-                        self.screen.blit(playerImg, (playerX, playerY))
+
+                playerImg = self.pygame.image.load(sprite_image_paths["player_1"])
+                playerImg = self.pygame.transform.scale(playerImg, (round(self.player_size * self.size_multiplier), round(self.player_size * self.size_multiplier)))
+                self.screen.blit(playerImg, (playerX, playerY))
+
                 
                 
         elif(dimension == 2):
+            pass
             #slice number is distance from left
+
             for slicenum in range(len(objects)):
                 for heightOfBackground in range(len(objects)):
                     #print("height of bg: " + str(heightOfBackground))
@@ -146,12 +150,11 @@ class Render:
                         objectImg = self.pygame.transform.scale(objectImg, (round(self.sprite_size * self.size_multiplier), round(self.sprite_size * self.size_multiplier)))
                         self.screen.blit(objectImg, (objectX, objectY))
                         
-                        playerImg = self.pygame.image.load(sprite_image_paths["player_1"])
-                        playerImg = self.pygame.transform.scale(playerImg, (round(self.sprite_size * self.size_multiplier), round(self.sprite_size * self.size_multiplier)))
-                        self.screen.blit(playerImg, (playerX, playerY))
+                playerImg = self.pygame.image.load(sprite_image_paths["player_1"])
+                playerImg = self.pygame.transform.scale(playerImg, (round(self.sprite_size * self.size_multiplier), round(self.sprite_size * self.size_multiplier)))
+                self.screen.blit(playerImg, (playerX, playerY))
             
             
-
         self.pygame.display.update()
 
 
