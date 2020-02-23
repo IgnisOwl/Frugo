@@ -28,14 +28,14 @@ CELLS = [[[[ ]]]] #y[x[cell[th[]]]]
 
 #dictionary of all the paths to sprites
 IMAGE_PATHS = {
-    "player_1" : "player_1.png",
-    "wall" : "wall.png",
-    "goal" : "goal.png",
-    "portal_1" : "portal_1.png",
-    "portal_2" : "portal_2.png",
-    "portal_3" : "portal_3.png",
-    "portal_4" : "portal_4.png",
-    "spawn" : "spawn.png",
+    "player_1" : "assets/player_1.png",
+    "wall" : "assets/wall.png",
+    "goal" : "assets/goal.png",
+    "portal_1" : "assets/portal_1.png",
+    "portal_2" : "assets/portal_2.png",
+    "portal_3" : "assets/portal_3.png",
+    "portal_4" : "assets/portal_4.png",
+    "spawn" : "assets/spawn.png",
     
 }
 
