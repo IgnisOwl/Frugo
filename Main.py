@@ -8,6 +8,7 @@ FPS = 60
 
 pygame.display.set_caption("Portal")
 
+
 COLORS = {
     "BLACK" : (0,0,0),
     "RED" : (255,0,0),
@@ -57,7 +58,7 @@ class Main:
         self.posY = 0
         self.pz = 0 #player z, will not change like y does
 
-        self.currentDim = 0 #current Dimension
+        self.currentDim = 1 #current Dimension
 
         self.inventory = [] #inventory is going to be organized like so: t, so depending on the block type you will know what to place down
        
@@ -83,7 +84,7 @@ class Main:
             
             self.renderer.render(self.cells, IMAGE_PATHS, self.currentDim, self.posX, self.posY)
             self.clock.tick(FPS)
-
+            
 if __name__ == "__main__":
     main = Main()
     main.mainLoop()
