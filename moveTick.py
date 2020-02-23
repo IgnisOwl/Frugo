@@ -14,15 +14,17 @@ def posFromVel(posX, posY, velX, velY):
 
 def dampVelocity(velX, velY, dampFactor):
     #prone to go to 0
-    if(velX < 0.5 or velX > -0.5):
+    if(velX <= dampFactor or velX >= -dampFactor):
         velX = 0
+
     if(velX < 0):
         velX = velX + dampFactor
     elif(velX > 0):
         velX = velX - dampFactor
 
-    if(velY < 0.5 or velY > -0.5):
+    if(velY <= dampFactor or velY >= -dampFactor):
         velY = 0
+
     if(velY < 0):
             velY = velY + dampFactor
     elif(velY > 0):
@@ -31,13 +33,13 @@ def dampVelocity(velX, velY, dampFactor):
     return(velX, velY)
 
 def moveTick(posX, posY, velX, velY, dim, objects, sprite_size, size_multiplier):
-    acceleration = 3
+    acceleration = 0.1
     maxSpeed = 5 #not implemented yet
-    damping = 0.65 #basically the friction
+    damping = 0.0001 #basically the friction
     dampingCollisionFactor = 2 #multiply the damping if its colliding
+    bounceDampening = 4 #-vel/BD
 
-    velX, velY = dampVelocity(velX, velY, damping)
-    posX, posY, velX, velY,
+    #velX, velY = dampVelocity(velX, velY, damping)
 
     if(dim == 0): #birds eye
         key = pygame.key.get_pressed()
@@ -54,6 +56,9 @@ def moveTick(posX, posY, velX, velY, dim, objects, sprite_size, size_multiplier)
     #now check if the collision happens, if it does, don't actually update the values
     if(not collision(objects, possibleX, possibleY, dim, sprite_size, size_multiplier)):
         posX, posY = possibleX, possibleY
+    else:
+        velX, velY = -(velX/bounceDampening), -(velY/bounceDampening)
+
     return(posX, posY, velX, velY)
 
 
