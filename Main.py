@@ -49,10 +49,10 @@ class Main:
         self.mouseY = 0
 
         #vel and pos for player:
-        self.vel1 = 0
-        self.vel2 = 0
-        self.pos1 = 0
-        self.pos2 = 0
+        self.velX = 0
+        self.velY = 0
+        self.posX = 0
+        self.posY = 0
         self.pz = 0 #player z, will not change like y does
 
         self.currentDim = 0 #current Dimension
@@ -73,14 +73,14 @@ class Main:
 
     def mainLoop(self):
         while True:
+            self.posX,self.posY,self.velX,self.velY = moveTick.moveTick(self.posX, self.posY, self.velX, self.velY, self.currentDim, self.cells, SPRITE_SIZE,SIZE_MULTIPLIER)
             for event in pygame.event.get():
-                self.pos1,self.pos2,self.vel1,self.vel2 = moveTick.getNewPlayerDat(self.pos1, self.pos2, self.vel1, self.vel2, self.cells,event,self.currentDim,SPRITE_SIZE,SIZE_MULTIPLIER)
                                                                                                                                                                                                                                                                                                         
                 if(event.type == pygame.QUIT):
                     pygame.quit()
             
             
-            self.renderer.render(self.cells, IMAGE_PATHS, self.currentDim, self.pos1, self.pos2)
+            self.renderer.render(self.cells, IMAGE_PATHS, self.currentDim, self.posX, self.posY)
             self.clock.tick(FPS)
 
 if __name__ == "__main__":
