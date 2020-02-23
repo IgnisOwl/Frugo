@@ -1,3 +1,5 @@
+
+import math
 class Render:
     def __init__(self, screen, pygame, colors, spriteSize, sizeMultiplier, playerSize):
         self.screen = screen
@@ -9,6 +11,7 @@ class Render:
     
     def render(self, objects, sprite_image_paths, dimension, playerX, playerY, renderSlice = 3, cellnum = 6):
         self.screen.fill(self.colors["BLACK"])
+        #self.checkwin(playerX, playerY, 3) #current level - automatic later
         #get the current object we are handling in all the objects provided
         if(dimension == 0):
             for sliceIndex in range(len(objects)):
@@ -156,25 +159,25 @@ class Render:
             
             
         self.pygame.display.update()
-        def checkwin(xpos, ypos, levelvarthing):
+    """
+    def checkwin(self, xpos, ypos, levelvarthing):
             if(levelvarthing == 1):
-                distance = sqrt((xpos)^2+(ypos-2)^2)
+                distance = math.sqrt((float(xpos))^2+(ypos-2)^2)
                 if distance <= 20:
                     return(True)
             elif(levelvarthing == 2):
-                distance = sqrt((xpos-2)^2+(ypos-5)^2)
+                distance = math.sqrt(float(xpos-2)^2+(ypos-5)^2)
                 if distance <= 20:
                     return(True)
             elif(levelvarthing == 3):
-                distance = sqrt((xpos)^2+(ypos-9)^2)
+                distance =math. sqrt(float(xpos))^2+(ypos-9)^2)
                 if distance <= 20:
                     return(True)
             elif(levelvarthing == 4):
-                distance = sqrt((xpos-14)^2+(ypos-14)^2)
+                distance = math.sqrt(float(xpos-14))^2+(ypos-14)^2)
                 if distance <= 20:
                     return(True)
-        checkWin(playerX, playerY)
-
+"""
 
 #beans
         

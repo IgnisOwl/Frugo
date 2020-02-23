@@ -86,7 +86,7 @@ class Main:
             imagePaths.append("Levels/l%s/%d.png" % (level, x)) #for each slice add one
 
         map = GenerateMap.getLevelMap(imagePaths)
-        x,y = GenerateMap.getSpawnLocation(map) 
+        x,y = GenerateMap.getSpawnLocation(map, 3) #3 is current level, change later 
         self.posX = x * PLAYER_SIZE * SIZE_MULTIPLIER
         self.posY = y * PLAYER_SIZE * SIZE_MULTIPLIER
         return(map)
