@@ -65,8 +65,8 @@ class Render:
             #renderslice is the slice currently used, which shouldn't change until portal is touched
             for renderCell in range(len(objects[renderSlice])):
                 for heightOfBackground in range(len(objects)):
-                    print("height of bg: " + str(heightOfBackground))
-                    print("rendercell: " + str(renderCell))
+                    #print("height of bg: " + str(heightOfBackground))
+                    #print("rendercell: " + str(renderCell))
                     objectX = round(renderCell * self.sprite_size * self.size_multiplier)
                     objectY = round(heightOfBackground * self.sprite_size * self.size_multiplier)
                         

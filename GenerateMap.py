@@ -56,5 +56,16 @@ def getLevelMap(paths):
     return(map, imageXW, imageYW)
 
 def getSpawnLocation(objects):
-    print(object) #spawn block and get its location
-    return(1,1)
+    #print(objects) #spawn block and get its location
+    for xslice in range(len(objects)) :
+        for ycell in range(len(objects)) :
+            if(len(objects[xslice][ycell])>0):
+                if(objects[xslice][ycell][0][0] == "spawn"):
+                    print(objects[xslice][ycell])
+                    print(xslice)
+                    print(ycell)
+                    return(ycell, xslice)
+                #else :
+                    #return(0,0)
+            #else :
+                #return(0,0)
