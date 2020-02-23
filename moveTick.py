@@ -31,7 +31,7 @@ def moveTick(pos1,pos2,velo1,velo2,height,walls,event,dim):#vlo 1 is left right,
             velo1=0
         if event.key == event.K_d or event.key == event.K_RIGHT:
             velo1=0
-    return pos,velo
+    return pos1,pos2,velo1,velo2
 
 def onGround(height,walls,dim,pos):
     pass
