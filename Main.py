@@ -37,6 +37,7 @@ IMAGE_PATHS = {
     "portal_3" : "assets/portal_3.png",
     "portal_4" : "assets/portal_4.png",
     "spawn" : "assets/spawn.png",
+    "background": "assets/background.png",
 }
 
 class Main:
