@@ -65,7 +65,7 @@ class Main:
         self.portalCounter = 0
 
 
-        self.currentDim = 0 #current Dimension
+        self.currentDim = 2 #current Dimension
 
         self.inventory = [] #inventory is going to be organized like so: t, so depending on the block type you will know what to place down
        
