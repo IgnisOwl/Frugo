@@ -2,6 +2,8 @@ from PIL import Image
 
 #converts the images to a map
 
+#NOTE: in the future we might just want to types instead of a 4d array. Then you can just have each class instance having a property
+
 def getLevelMap(paths):
 
     imageXW, imageYW = Image.open(paths[0]).size #each of these images should be the same
