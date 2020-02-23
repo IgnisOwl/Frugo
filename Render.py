@@ -6,7 +6,7 @@ class Render:
         self.size_multiplier = sizeMultiplier
         self.sprite_size = spriteSize
     
-    def render(self, objects, sprite_image_paths, dimension, playerX, playerY, renderSlice = "bruh"):
+    def render(self, objects, sprite_image_paths, dimension, playerX, playerY, renderSlice = 9):
         self.screen.fill(self.colors["BLACK"])
         #get the current object we are handling in all the objects provided
         if(dimension == 0):
