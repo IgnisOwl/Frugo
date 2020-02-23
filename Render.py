@@ -1,12 +1,13 @@
 class Render:
-    def __init__(self, screen, pygame, colors, spriteSize, sizeMultiplier):
+    def __init__(self, screen, pygame, colors, spriteSize, sizeMultiplier, playerSize):
         self.screen = screen
         self.pygame = pygame
         self.colors = colors
         self.size_multiplier = sizeMultiplier
         self.sprite_size = spriteSize
+        self.player_size = playerSize
     
-    def render(self, objects, sprite_image_paths, dimension, playerX, playerY, renderSlice = 9):
+    def render(self, objects, sprite_image_paths, dimension, playerX, playerY, renderSlice = 4):
         self.screen.fill(self.colors["BLACK"])
         #get the current object we are handling in all the objects provided
         if(dimension == 0):
@@ -55,7 +56,7 @@ class Render:
                     
                     
                     playerImg = self.pygame.image.load(sprite_image_paths["player_1"])
-                    playerImg = self.pygame.transform.scale(playerImg, (round(self.sprite_size * self.size_multiplier), round(self.sprite_size * self.size_multiplier)))
+                    playerImg = self.pygame.transform.scale(playerImg, (round(self.player_size * self.size_multiplier), round(self.player_size * self.size_multiplier)))
                     self.screen.blit(playerImg, (playerX, playerY))
             print(objects[0])
             print("bruh")
@@ -84,11 +85,22 @@ class Render:
                             objectImg = self.pygame.image.load(sprite_image_paths["side_goal"])
                         
                         objectX = round(renderCell * self.sprite_size * self.size_multiplier)
-                        objectY = round((len(objects) - objects[renderSlice][renderCell][verticalBlockIndex][1] - 1)* self.sprite_size * self.size_multiplier)
+                        objectY = round((len(objects) - objects[renderSlice][renderCell][verticalBlockIndex][1])* self.sprite_size * self.size_multiplier)
                         self.screen.blit(objectImg, (objectX, objectY))
+                
+                else:
+                    for heightOfBackground in range(len(objects)):
+                        objectX = round(renderCell * self.sprite_size * self.size_multiplier)
+                        objectY = round(heightOfBackground * self.sprite_size * self.size_multiplier)
                         
-                        playerImg = self.pygame.image.load(sprite_image_paths["player_1"])
-                        playerImg = self.pygame.transform.scale(playerImg, (round(self.sprite_size * self.size_multiplier), round(self.sprite_size * self.size_multiplier)))
+                        objectImg = self.pygame.image.load(sprite_image_paths["background"])
+                        objectImg = self.pygame.transform.scale(objectImg, (round(self.sprite_size * self.size_multiplier), round(self.sprite_size * self.size_multiplier)))
+                        self.screen.blit(objectImg, (objectX, objectY))
+                
+                
+                
+                playerImg = self.pygame.image.load(sprite_image_paths["player_1"])
+                playerImg = self.pygame.transform.scale(playerImg, (round(self.sprite_size * self.size_multiplier), round(self.sprite_size * self.size_multiplier)))
                         
                         
         elif(dimension == 2):
