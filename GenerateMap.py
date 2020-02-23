@@ -40,16 +40,16 @@ def getLevelMap(paths):
                     cell.append(["goal", imageYW-y])
                 
                 elif(Image.open(paths[i]).getpixel((x,y))[0:3] == key["PORTAL_TOP"]):
-                    cell.append(["portal", imageYW-y])
+                    cell.append(["portal", imageYW-y, 1])
 
                 elif(Image.open(paths[i]).getpixel((x,y))[0:3] == key["PORTAL_LEFT"]):
-                    cell.append(["portal", imageYW-y])
+                    cell.append(["portal", imageYW-y, 2])
 
                 elif(Image.open(paths[i]).getpixel((x,y))[0:3] == key["PORTAL_BOTTOM"]):
-                    cell.append(["portal", imageYW-y])
+                    cell.append(["portal", imageYW-y, 3])
 
                 elif(Image.open(paths[i]).getpixel((x,y))[0:3] == key["PORTAL_RIGHT"]):
-                    cell.append(["portal", imageYW-y])
+                    cell.append(["portal", imageYW-y, 0])
 
             map[i].append(cell)
                 #cell will now contain the various blocks at different heights for one cell
