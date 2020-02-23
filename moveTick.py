@@ -34,7 +34,6 @@ def moveTick(posX, posY, velX, velY, dim, objects, sprite_size, size_multiplier)
     damping = 0.7 #basically the friction
     dampingCollisionFactor = 2 #multiply the damping if its colliding
     bounceDampening = 15 #-vel/BD
-    leway = 5 #collision leway
 
 
     if(dim == 0): #birds eye
@@ -68,20 +67,23 @@ def moveTick(posX, posY, velX, velY, dim, objects, sprite_size, size_multiplier)
 
 
 def collision(objects, posX, posY, dim, sprite_size, size_multiplier):
+    
+    
+    leway = 10
     if(dim == 0):
         #go through every wall
         for sliceIndex in range(len(objects)):
             for cellIndex in range(len(objects[sliceIndex])):
                 if(len(objects[sliceIndex][cellIndex])> 0):
                     wallX = round(cellIndex * sprite_size * size_multiplier)
-                    wallY = round((len(objects) - sliceIndex - 1) * sprite_size * size_multiplier)
+                    wallY = round(sliceIndex * sprite_size * size_multiplier)
                     wall_width = round(sprite_size * size_multiplier)
                     wallType = objects[sliceIndex][cellIndex][0][0]
 
-                    if(posX > wallX and posX < wallX+wall_width and posY > wallY and posY < wallY+wall_width or
-                           posX+(sprite_size* size_multiplier) > wallX and posX+(sprite_size* size_multiplier) < wallX+(sprite_size* size_multiplier) and posY > wallY and posY < wallY+wall_width or
+                    if(posX - leway > wallX and posX + leway < wallX+wall_width and posY - leway > wallY and posY + leway < wallY+wall_width or
+                           posX+(sprite_size* size_multiplier) - leway > wallX and posX+(sprite_size* size_multiplier) + leway < wallX+(sprite_size* size_multiplier) and posY - leway > wallY and posY + leway < wallY+wall_width or
                            posX > wallX and posX < wallX + wall_width and posY+(sprite_size* size_multiplier) > wallY and posY+(sprite_size* size_multiplier) < wallY+wall_width or
-                           posX+(sprite_size* size_multiplier) > wallX and posX+(sprite_size* size_multiplier) < wallX+wall_width and posY+(sprite_size* size_multiplier)>wallY and posY+(sprite_size* size_multiplier)<wallY+wall_width): #if its in the bounds
+                           posX+(sprite_size* size_multiplier) - leway > wallX and posX+(sprite_size* size_multiplier) + leway < wallX+wall_width and posY+(sprite_size* size_multiplier) - leway >wallY and posY+(sprite_size* size_multiplier) + leway <wallY+wall_width): #if its in the bounds
                         if(not isPassable(objects[sliceIndex][cellIndex][0][0])):
 
                             return(True, dim)
