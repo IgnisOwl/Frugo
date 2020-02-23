@@ -7,7 +7,7 @@ class Render:
         self.sprite_size = spriteSize
         self.player_size = playerSize
     
-    def render(self, objects, sprite_image_paths, dimension, playerX, playerY, renderSlice = 4):
+    def render(self, objects, sprite_image_paths, dimension, playerX, playerY, renderSlice = 3):
         self.screen.fill(self.colors["BLACK"])
         #get the current object we are handling in all the objects provided
         if(dimension == 0):
@@ -40,9 +40,7 @@ class Render:
                     
                         objectX = round(cellIndex * self.sprite_size * self.size_multiplier)
                         objectY = round(sliceIndex * self.sprite_size * self.size_multiplier)
-                        #print("object x = " + str(cellIndex) + ", and the object y = " + str(sliceIndex))
-                        #print("the slice is:")
-                        #print(objects[sliceIndex])
+                        
                         objectImg = self.pygame.transform.scale(objectImg, (round(self.sprite_size * self.size_multiplier), round(self.sprite_size * self.size_multiplier)))
                         self.screen.blit(objectImg, (objectX, objectY))
                     
@@ -58,14 +56,26 @@ class Render:
                     playerImg = self.pygame.image.load(sprite_image_paths["player_1"])
                     playerImg = self.pygame.transform.scale(playerImg, (round(self.player_size * self.size_multiplier), round(self.player_size * self.size_multiplier)))
                     self.screen.blit(playerImg, (playerX, playerY))
-            print(objects[0])
-            print("bruh")
+            #print(objects[0])
+            #print("bruh")
                     
         elif(dimension == 1):
             #slice number is distance from top
             #rendercell is the cell index currently used
             #renderslice is the slice currently used, which shouldn't change until portal is touched
             for renderCell in range(len(objects[renderSlice])):
+                for heightOfBackground in range(len(objects)):
+                    print("height of bg: " + str(heightOfBackground))
+                    print("rendercell: " + str(renderCell))
+                    objectX = round(renderCell * self.sprite_size * self.size_multiplier)
+                    objectY = round(heightOfBackground * self.sprite_size * self.size_multiplier)
+                        
+                    objectImg = self.pygame.image.load(sprite_image_paths["background"])
+                    objectImg = self.pygame.transform.scale(objectImg, (round(self.sprite_size * self.size_multiplier), round(self.sprite_size * self.size_multiplier)))
+                    self.screen.blit(objectImg, (objectX, objectY))
+            
+            for renderCell in range(len(objects[renderSlice])):
+                print("render cell: " + str(renderCell))
                 if(len(objects[renderSlice][renderCell])> 0):
                     #verticalBlockIndex is the index for how many solid blocks the current block is from the top block
                     for verticalBlockIndex in range(len(objects[renderSlice][renderCell])):
@@ -79,30 +89,25 @@ class Render:
                             portalType = objects[renderSlice][renderCell][0][2]
                             if(portalType == 0):
                                 objectImg = self.pygame.image.load(sprite_image_paths["portal_1"])
-                            elif(portalType == 1):
+                            elif(portalType == 2):
                                 objectImg = self.pygame.image.load(sprite_image_paths["portal_3"])
                         elif(objectType == "goal"):
                             objectImg = self.pygame.image.load(sprite_image_paths["side_goal"])
-                        
+                            
                         objectX = round(renderCell * self.sprite_size * self.size_multiplier)
                         objectY = round((len(objects) - objects[renderSlice][renderCell][verticalBlockIndex][1])* self.sprite_size * self.size_multiplier)
-                        self.screen.blit(objectImg, (objectX, objectY))
-                
-                else:
-                    for heightOfBackground in range(len(objects)):
-                        objectX = round(renderCell * self.sprite_size * self.size_multiplier)
-                        objectY = round(heightOfBackground * self.sprite_size * self.size_multiplier)
                         
-                        objectImg = self.pygame.image.load(sprite_image_paths["background"])
                         objectImg = self.pygame.transform.scale(objectImg, (round(self.sprite_size * self.size_multiplier), round(self.sprite_size * self.size_multiplier)))
                         self.screen.blit(objectImg, (objectX, objectY))
                 
+                #else:                
                 
                 
                 playerImg = self.pygame.image.load(sprite_image_paths["player_1"])
                 playerImg = self.pygame.transform.scale(playerImg, (round(self.sprite_size * self.size_multiplier), round(self.sprite_size * self.size_multiplier)))
-                        
-                        
+                self.screen.blit(playerImg, (playerX, playerY))
+                
+                
         elif(dimension == 2):
             #slice number is distance from left
             print("fuck you x2")
