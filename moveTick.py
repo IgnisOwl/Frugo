@@ -14,16 +14,16 @@ def posFromVel(posX, posY, velX, velY):
 
 def dampVelocity(velX, velY, dampFactor):
     #prone to go to 0
-    if(velX <= dampFactor or velX >= -dampFactor):
-        velX = 0
+    #if(velX <= dampFactor or velX >= -dampFactor):
+    #    velX = 0
 
     if(velX < 0):
         velX = velX + dampFactor
     elif(velX > 0):
         velX = velX - dampFactor
 
-    if(velY <= dampFactor or velY >= -dampFactor):
-        velY = 0
+    #if(velY <= dampFactor or velY >= -dampFactor):
+    #    velY = 0
 
     if(velY < 0):
             velY = velY + dampFactor
@@ -39,7 +39,7 @@ def moveTick(posX, posY, velX, velY, dim, objects, sprite_size, size_multiplier)
     dampingCollisionFactor = 2 #multiply the damping if its colliding
     bounceDampening = 4 #-vel/BD
 
-    #velX, velY = dampVelocity(velX, velY, damping)
+    velX, velY = dampVelocity(velX, velY, damping)
 
     if(dim == 0): #birds eye
         key = pygame.key.get_pressed()
@@ -84,7 +84,7 @@ def collision(objects, posX, posY, dim, sprite_size, size_multiplier):
     return(False)
 
 def isPassable(wallType):
-    if(wallType == "portal"):
+    if(wallType == "portal" or wallType == "goal"):
         return(True)
     else:
         return(False)
