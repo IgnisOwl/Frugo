@@ -62,8 +62,8 @@ class Main:
         while True:
             for event in pygame.event.get():
                                                                                                                                                                                                                                                                                                         
-                if(event.type == pygame.QUIT()):
-                    pygame.quit()
+                if(event.type == event.QUIT()):
+                    event.quit()
             
             
             #self.renderer.render(self.cells, IMAGE_PATHS)
