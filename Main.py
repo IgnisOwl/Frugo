@@ -51,12 +51,12 @@ class Main:
         if(level == 2):
             sizeX = 15
             sizeY = 10
-            imagePaths = [""]
+            imagePaths = []
 
             for x in range(sizeX):
-                imagePaths.append("Levels/l1/%d" % (x)) #for each slic add one
+                imagePaths.append("Levels/l2/%d.png" % (x)) #for each slic add one
 
-        return(GenerateMap.getLevelMap(imagePaths))
+            return(GenerateMap.getLevelMap(imagePaths))
 
     def mainLoop(self):
         while True:
