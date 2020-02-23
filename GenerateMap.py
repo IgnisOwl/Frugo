@@ -1,9 +1,14 @@
 from PIL import Image
 
-def getLevelMap(path, colors, itemSize, defaultItems):
-    image = Image.open(path)
+#converts the images to a map
+
+def getLevelMap(paths, colors, itemSize):
+    images = []
+
+    for i in paths:
+        images.append(Image.open(i))
     
-    imageXW, imageYW = image.size
+    imageXW, imageYW = images[0].size() #each of these images should be the same, NOTE the first map should be top down view
     
     #each block and their color
     key = {
@@ -14,9 +19,9 @@ def getLevelMap(path, colors, itemSize, defaultItems):
     
     #output map
     map = []
+
     
-    map.append(defaultItems)
-    
+    #fisrt for the top down view... after this we have to go back and edit h
     for y in range(imageYW):
         for x in range(imageXW):
             if(image.getpixel((x,y))[0:3] == colors[key["WALL"]]):

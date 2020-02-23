@@ -28,4 +28,6 @@ class Render:
             self.screen.blit(objectImg, (objectX, objectY))
         
         self.pygame.display.update()
+
+#beans
         
