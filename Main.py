@@ -41,8 +41,7 @@ class Main:
         self.renderer = Render.Render(self.screen, pygame, COLORS, SPRITE_SIZE, SIZE_MULTIPLIER)
         self.mouseX = 0
         self.mouseY = 0
-        print(self.loadLevel(3))
-        self.cells = []
+        self.cells = self.loadLevel(3)
         self.inventory = [] #inventory is going to be organized like so: t, so depending on the block type you will know what to place down
        
     def mousePos(self):
