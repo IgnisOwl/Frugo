@@ -55,14 +55,13 @@ def getLevelMap(paths):
                 #cell will now contain the various blocks at different heights for one cell
     return(map, imageXW, imageYW)
 
-def getSpawnLocation(objects):
-    levelvarthing = 3
+def getSpawnLocation(objects, levelvarthing):
     if(levelvarthing == 1):
         return(0,2)
     elif(levelvarthing == 2):
         return(0,2)
     elif(levelvarthing == 3):
-        return(0,9)
+        return(0,4)
     elif(levelvarthing == 4):
         return(0,15)
     

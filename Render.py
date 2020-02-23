@@ -156,6 +156,24 @@ class Render:
             
             
         self.pygame.display.update()
+        def checkwin(xpos, ypos, levelvarthing):
+            if(levelvarthing == 1):
+                distance = sqrt((xpos)^2+(ypos-2)^2)
+                if distance <= 20:
+                    return(True)
+            elif(levelvarthing == 2):
+                distance = sqrt((xpos-2)^2+(ypos-5)^2)
+                if distance <= 20:
+                    return(True)
+            elif(levelvarthing == 3):
+                distance = sqrt((xpos)^2+(ypos-9)^2)
+                if distance <= 20:
+                    return(True)
+            elif(levelvarthing == 4):
+                distance = sqrt((xpos-14)^2+(ypos-14)^2)
+                if distance <= 20:
+                    return(True)
+        checkWin(playerX, playerY)
 
 
 #beans
