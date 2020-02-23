@@ -19,6 +19,7 @@ COLORS = {
 
 SPRITE_SIZE = 32
 SIZE_MULTIPLIER = 2 #size multiplier, to make bigger or smaller
+PLAYER_SIZE = 20
 
 #this means the level map is SPRITE_SIZE*AmountOfWalls = SCREEN_X or SCREEN_Y
 
@@ -48,7 +49,7 @@ class Main:
 
         self.screen = pygame.display.set_mode((screen_x, screen_y))
         self.clock = pygame.time.Clock()
-        self.renderer = Render.Render(self.screen, pygame, COLORS, SPRITE_SIZE, SIZE_MULTIPLIER)
+        self.renderer = Render.Render(self.screen, pygame, COLORS, SPRITE_SIZE, SIZE_MULTIPLIER, PLAYER_SIZE)
         self.mouseX = 0
         self.mouseY = 0
 
@@ -76,7 +77,7 @@ class Main:
 
     def mainLoop(self):
         while True:
-            self.posX,self.posY,self.velX,self.velY,self.currentDim = moveTick.moveTick(self.posX, self.posY, self.velX, self.velY, self.currentDim, self.cells, SPRITE_SIZE,SIZE_MULTIPLIER)
+            self.posX,self.posY,self.velX,self.velY,self.currentDim = moveTick.moveTick(self.posX, self.posY, self.velX, self.velY, self.currentDim, self.cells, SPRITE_SIZE,SIZE_MULTIPLIER, PLAYER_SIZE)
             for event in pygame.event.get():
                                                                                                                                                                                                                                                                                                         
                 if(event.type == pygame.QUIT):
