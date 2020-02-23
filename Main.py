@@ -32,6 +32,7 @@ IMAGE_PATHS = {
     "player_1" : "assets/player_1.png",
     "wall" : "assets/wall.png",
     "goal" : "assets/goal.png",
+    "side_goal": "assets/goal_side.png",
     "portal_1" : "assets/portal_1.png",
     "portal_2" : "assets/portal_2.png",
     "portal_3" : "assets/portal_3.png",
