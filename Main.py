@@ -2,6 +2,7 @@ import pygame
 import Render
 import GenerateMap
 import moveTick
+import os
 
 SCREEN_X = 950
 SCREEN_Y = 550
@@ -49,12 +50,10 @@ class Main:
 
     def loadLevel(self, level):
         if(level == 2):
-            sizeX = 15
-            sizeY = 10
             imagePaths = []
 
-            for x in range(sizeX):
-                imagePaths.append("Levels/l2/%d.png" % (x)) #for each slic add one
+            for x in range(len(os.listdir("Levels/l%s" % level))):
+                imagePaths.append("Levels/l%s/%d.png" % (level, x)) #for each slice add one
 
             return(GenerateMap.getLevelMap(imagePaths))
 
@@ -62,8 +61,8 @@ class Main:
         while True:
             for event in pygame.event.get():
                                                                                                                                                                                                                                                                                                         
-                if(event.type == event.QUIT()):
-                    event.quit()
+                if(event.type == pygame.QUIT):
+                    pygame.quit()
             
             
             #self.renderer.render(self.cells, IMAGE_PATHS)
