@@ -13,6 +13,27 @@ class Render:
         self.screen.fill(self.colors["BLACK"])
         #self.checkwin(playerX, playerY, 3) #current level - automatic later
         #get the current object we are handling in all the objects provided
+        wintext = self.pygame.image.load(sprite_image_paths["assets/index.jpeg"])
+        if(levelvarthing == 1):
+            distance = xpos + ypos - 2
+            if distance <= 20:
+                self.screen.blit(wintext, (150, 150))
+        elif(levelvarthing == 2):
+            distance = xpos - 2 + ypos - 5
+            if distance <= 20:
+                self.screen.blit(wintext, (150, 150))
+        elif(levelvarthing == 3):
+            distance = xpos + math.sqrt((ypos - 9)*(ypos-9))
+            if distance <= 20:
+                self.screen.blit(wintext, (150, 150))
+        elif(levelvarthing == 4):
+            distance = math.sqrt(xpos*xpos)+math.sqrt((ypos-14)*(ypos-14))
+            if distance <= 20:
+                self.screen.blit(wintext, (150, 150))
+
+
+
+
         if(dimension == 0):
             for sliceIndex in range(len(objects)):
             #if the object is a player, get the sprite based on the facing, and gun position
@@ -83,7 +104,7 @@ class Render:
                     #verticalBlockIndex is the index for how many solid blocks the current block is from the top block
                     for verticalBlockIndex in range(len(objects[renderSlice][renderCell])):
                         objectType = objects[renderSlice][renderCell][verticalBlockIndex][0]
-                        
+                            
                         if(objectType == "spawn"): #0 is automatically the top, because the way the map generates, the top is added in last
                             objectImg = self.pygame.image.load(sprite_image_paths["spawn"])
                         elif(objectType == "wall"):
@@ -159,8 +180,8 @@ class Render:
             
             
         self.pygame.display.update()
-    """
-    def checkwin(self, xpos, ypos, levelvarthing):
+    
+    '''def checkwin(self, xpos, ypos, levelvarthing):
             if(levelvarthing == 1):
                 distance = math.sqrt((float(xpos))^2+(ypos-2)^2)
                 if distance <= 20:
@@ -177,7 +198,7 @@ class Render:
                 distance = math.sqrt(float(xpos-14))^2+(ypos-14)^2)
                 if distance <= 20:
                     return(True)
-"""
+'''
 
 #beans
         
