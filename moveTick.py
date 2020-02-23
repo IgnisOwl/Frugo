@@ -52,6 +52,11 @@ def moveTick(posX, posY, velX, velY, dim, objects, sprite_size, size_multiplier,
         if key[pygame.K_s]:
             if(velY <= maxSpeed):
                 velY = velY + acceleration
+
+    
+    if(dim == 1):
+        velX, velY = gravity(velX, velY);
+        
     #now calculate the positions and if they should apply from the velocities
     possibleX, possibleY = posFromVel(posX, posY, velX, velY)
     #now check if the collision happens, if it does, don't actually update the values
@@ -61,6 +66,7 @@ def moveTick(posX, posY, velX, velY, dim, objects, sprite_size, size_multiplier,
         posX, posY = possibleX, possibleY
     else:
         velX, velY = -(velX/bounceDampening), -(velY/bounceDampening)
+        
 
     return(posX, posY, velX, velY, col[1])
 

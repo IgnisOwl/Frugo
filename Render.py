@@ -1,5 +1,5 @@
 class Render:
-    def __init__(self, screen, pygame, colors, spriteSize, sizeMultiplier):
+    def __init__(self, screen, pygame, colors, spriteSize, sizeMultiplier, r):
         self.screen = screen
         self.pygame = pygame
         self.colors = colors
