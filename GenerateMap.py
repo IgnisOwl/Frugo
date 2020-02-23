@@ -54,3 +54,10 @@ def getLevelMap(paths):
             map[i].append(cell)
                 #cell will now contain the various blocks at different heights for one cell
     return(map, imageXW, imageYW)
+
+def getSpawnLocation(map, player):
+    for sliceIndex in range(len(map)):
+        for cellIndex in range(len(map[sliceIndex])):
+            if(len(map[sliceIndex][cellIndex])> 0):
+                if(map[sliceIndex][cellIndex][0][0]=="spawn"):
+                    return(sliceIndex, cellIndex)
