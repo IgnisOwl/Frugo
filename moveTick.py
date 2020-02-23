@@ -66,7 +66,8 @@ def moveTick(posX, posY, velX, velY, dim, objects, sprite_size, size_multiplier,
             if(velY <= maxSpeed):
                 velY = velY + acceleration
         
-        renderSlice = round(posY/sprite_size) #must round to nearest factor of the sprite size, so each row
+        #renderSlice = round(posY/sprite_size) #must round to nearest factor of the sprite size, so each row
+        renderSlice = 8
     
     if(dim == 1):
         velX, velY = gravity(velX, velY, damping); #we want the gravity to overcome the damp factor
@@ -135,9 +136,11 @@ def collision(objects, posX, posY, dim, sprite_size, size_multiplier, player_siz
         for renderCell in range(len(objects[renderSlice])):
             for verticalBlockIndex in range(len(objects[renderSlice][renderCell])):
                 wallX = round(renderCell * sprite_size * size_multiplier)
-                wallY = round(sprite_size * size_multiplier * 10 - sprite_size * size_multiplier *verticalBlockIndex)
+                wallY = round(sprite_size * size_multiplier * 9 - sprite_size * size_multiplier *verticalBlockIndex) #9 change
                 #print(posY)
+                #print(posX)
                 #print(wallY)
+                #print(wallX)
                 wallType = objects[renderSlice][renderCell][verticalBlockIndex][0]
                 wall_width = round(sprite_size * size_multiplier)
 
@@ -150,13 +153,15 @@ def collision(objects, posX, posY, dim, sprite_size, size_multiplier, player_siz
                         if(not isPassable(wallType)):
                             return(True, dim, portalCounter)
                         else:
-                            if(isPortal(objects[renderCell][verticalBlockIndex])[0] == True):
+                            print(objects[renderSlice][renderCell][verticalBlockIndex][0])
+                            #if(isPortal(objects[renderSlice][renderCell][verticalBlockIndex]) == True):
+                            if(objects[renderSlice][renderCell][verticalBlockIndex][0] =="portal"):
                                 portalCounter+=1 #for the countdown
                                 #print(portalCounter)
-                                if(isPortal(objects[renderCell][verticalBlockIndex])[1] == 0 or isPortal(objects[renderCell][verticalBlockIndex])[1] == 2):
-                                    if(portalCounter>50):#reached time
+                                #if(isPortal(objects[renderSlice][renderCell][verticalBlockIndex])[1] == 0 or isPortal(objects[renderSlice][renderCell][verticalBlockIndex])[1] == 2):
+                                if(portalCounter>50):#reached time
                                         portalCounter = 0
-                                        return(True, 1, portalCounter)
+                                        return(True, 0, portalCounter)
 
                     #else:
                     #        portalCounter = 0
