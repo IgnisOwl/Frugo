@@ -41,6 +41,14 @@ class Main:
         self.renderer = Render.Render(self.screen, pygame, COLORS, SPRITE_SIZE, SIZE_MULTIPLIER)
         self.mouseX = 0
         self.mouseY = 0
+
+        #vel and pos for player:
+        self.vel1 = 0
+        self.vel2 = 0
+        self.pos1 = 0
+        self.pos2 = 0
+        self.pz = 0 #player z, will not change like y does
+
         self.cells = self.loadLevel(3)
         self.inventory = [] #inventory is going to be organized like so: t, so depending on the block type you will know what to place down
        
@@ -58,6 +66,7 @@ class Main:
     def mainLoop(self):
         while True:
             for event in pygame.event.get():
+                self.pos1,self.pos2,self.vel1,self.vel2 = moveTick.moveTick(self.pos1, self.pos2, self.vel1, self.vel2, self.pz, 0)#idk wut pwidth and pheight are
                                                                                                                                                                                                                                                                                                         
                 if(event.type == pygame.QUIT):
                     pygame.quit()
