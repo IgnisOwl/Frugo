@@ -29,10 +29,15 @@ CELLS = [[[[ ]]]] #y[x[cell[th[]]]]
 #dictionary of all the paths to sprites
 IMAGE_PATHS = {
     "player_1" : "player_1.png",
-    "solid_wall" : "solid_wall.png"
+    "wall" : "wall.png",
+    "goal" : "goal.png",
+    "portal_1" : "portal_1.png",
+    "portal_2" : "portal_2.png",
+    "portal_3" : "portal_3.png",
+    "portal_4" : "portal_4.png",
+    "spawn" : "spawn.png",
+    
 }
-
-MAP_NAME = "level_1_map.png"
 
 class Main:
     def __init__(self):
