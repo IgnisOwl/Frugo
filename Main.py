@@ -20,7 +20,7 @@ COLORS = {
     "WHITE" : (255,255,255)
 }
 
-SPRITE_SIZE = 50
+SPRITE_SIZE = 32
 SIZE_MULTIPLIER = 1 #size multiplier, to make bigger or smaller
 
 #cell list is like: [[[[t,h], [t,h]]]] - thre reason we need height is because if we wanted an empty space right below solid block.
