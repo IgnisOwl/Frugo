@@ -13,7 +13,7 @@ class Render:
         for sliceIndex in range(len(objects)):
             #if the object is a player, get the sprite based on the facing, and gun position
             for cellIndex in range(len(objects[sliceIndex])):
-                print(objects[sliceIndex][cellIndex])
+                #print(objects[sliceIndex][cellIndex])
         
                   #  objectImg = self.pygame.image.load(sprite_image_paths["player_1"])
                 #elif(object[3] == "left"):
@@ -22,10 +22,10 @@ class Render:
             #if(object[0][0:6] == "wall"):
                 objectImg = self.pygame.image.load(sprite_image_paths["solid_wall"])
                     
-            objectX = 
-            objectY = object[2]
+            objectX = round(cellIndex * self.sprite_size * self.size_multiplier)
+            objectY = round((len(objects) - sliceIndex) * self.sprite_size * self.size_multiplier)
             
-            objectImg = self.pygame.transform.scale(objectImg, (self.sprite_size * self.size_multiplier, self.sprite_size * self.size_multiplier))
+            objectImg = self.pygame.transform.scale(objectImg, (round(self.sprite_size * self.size_multiplier), round(self.sprite_size * self.size_multiplier)))
             self.screen.blit(objectImg, (objectX, objectY))
         
         self.pygame.display.update()
