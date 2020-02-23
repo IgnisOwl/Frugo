@@ -70,7 +70,7 @@ class Render:
                     objectX = round(renderCell * self.sprite_size * self.size_multiplier)
                     objectY = round(heightOfBackground * self.sprite_size * self.size_multiplier)
                         
-                    objectImg = self.pygame.image.load(sprite_image_paths["background"])
+                    objectImg = self.pygame.image.load(sprite_image_paths["side_background"])
                     objectImg = self.pygame.transform.scale(objectImg, (round(self.sprite_size * self.size_multiplier), round(self.sprite_size * self.size_multiplier)))
                     self.screen.blit(objectImg, (objectX, objectY))
             
