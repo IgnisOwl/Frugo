@@ -41,7 +41,7 @@ class Main:
         self.renderer = Render.Render(self.screen, pygame, COLORS, SPRITE_SIZE, SIZE_MULTIPLIER)
         self.mouseX = 0
         self.mouseY = 0
-        #print(self.loadLevel(2))
+        print(self.loadLevel(3))
         self.cells = []
         self.inventory = [] #inventory is going to be organized like so: t, so depending on the block type you will know what to place down
        
@@ -49,13 +49,12 @@ class Main:
         return pygame.mouse.get_pos()
 
     def loadLevel(self, level):
-        if(level == 2):
-            imagePaths = []
+        imagePaths = []
 
-            for x in range(len(os.listdir("Levels/l%s" % level))):
-                imagePaths.append("Levels/l%s/%d.png" % (level, x)) #for each slice add one
+        for x in range(len(os.listdir("Levels/l%s" % level))):
+            imagePaths.append("Levels/l%s/%d.png" % (level, x)) #for each slice add one
 
-            return(GenerateMap.getLevelMap(imagePaths))
+        return(GenerateMap.getLevelMap(imagePaths))
 
     def mainLoop(self):
         while True:

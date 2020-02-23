@@ -18,16 +18,15 @@ def getLevelMap(paths):
 
     #go through the slices and construct the map based off that, we don't actually need a top down map because these slices will make it
     for i in range(len(paths)): #each image represents an row.
-        map.append([]) #for each row
+        map.append([])
 
         for x in range(imageXW): #now insde of this one row, deal with each cell  individually
-            
+
             cell = [] #holds the cell
             for y in range(imageYW): #y is the height, so it needs to cycle through each possible block in this height stack
                 if(Image.open(paths[i]).getpixel((x,y))[0:3] == key["WALL"]):
                     cell.append(["wall", imageYW-y])
 
-            map[i].append(cell) #i represents y, x represents x(aka the cell its on), and we need to add each block to this, so in the end we should have something like: [[[ ]]]
+            map[i].append(cell)
                 #cell will now contain the various blocks at different heights for one cell
-
     return(map)
