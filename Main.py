@@ -41,7 +41,6 @@ IMAGE_PATHS = {
     "background": "assets/background.png",
     "side_background": "assets/gray_background.png",
     
-    
 }
 
 class Main:
