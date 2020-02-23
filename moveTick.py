@@ -66,8 +66,9 @@ def moveTick(posX, posY, velX, velY, dim, objects, sprite_size, size_multiplier,
             if(velY <= maxSpeed):
                 velY = velY + acceleration
         
-        #renderSlice = round(posY/sprite_size) #must round to nearest factor of the sprite size, so each row
-        renderSlice = 8
+        renderSlice = round(posY/(sprite_size*size_multiplier)) #must round to nearest factor of the sprite size, so each row
+        #renderSlice = 8
+        print(renderSlice)
     
     if(dim == 1):
         velX, velY = gravity(velX, velY, damping); #we want the gravity to overcome the damp factor
@@ -153,13 +154,13 @@ def collision(objects, posX, posY, dim, sprite_size, size_multiplier, player_siz
                         if(not isPassable(wallType)):
                             return(True, dim, portalCounter)
                         else:
-                            print(objects[renderSlice][renderCell][verticalBlockIndex][0])
-                            #if(isPortal(objects[renderSlice][renderCell][verticalBlockIndex]) == True):
-                            if(objects[renderSlice][renderCell][verticalBlockIndex][0] =="portal"):
+                            #print(isPortalD(objects[renderSlice][renderCell][verticalBlockIndex]))
+                            if(isPortalD(objects[renderSlice][renderCell][verticalBlockIndex])[0] == True):
+                            #if(objects[renderSlice][renderCell][verticalBlockIndex][0] =="portal"):
                                 portalCounter+=1 #for the countdown
                                 #print(portalCounter)
-                                #if(isPortal(objects[renderSlice][renderCell][verticalBlockIndex])[1] == 0 or isPortal(objects[renderSlice][renderCell][verticalBlockIndex])[1] == 2):
-                                if(portalCounter>50):#reached time
+                                if(isPortalD(objects[renderSlice][renderCell][verticalBlockIndex])[1] == 0 or isPortalD(objects[renderSlice][renderCell][verticalBlockIndex])[1] == 2):
+                                    if(portalCounter>50):#reached time
                                         portalCounter = 0
                                         return(True, 0, portalCounter)
 
@@ -178,5 +179,11 @@ def isPortal(block):
     z=0
     if(block[z][0] == "portal"):
         return(True, block[z][2]) #portal type
+    else:
+        return(False, None)
+
+def isPortalD(block):
+    if(block[0] == "portal"):
+        return(True, block[2]) #portal type
     else:
         return(False, None)
