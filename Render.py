@@ -8,7 +8,6 @@ class Render:
     
     def render(self, objects, sprite_image_paths, dimension, playerX, playerY, renderSlice = "bruh"):
         self.screen.fill(self.colors["BLACK"])
-        
         #get the current object we are handling in all the objects provided
         if(dimension == 0):
             for sliceIndex in range(len(objects)):
@@ -40,7 +39,9 @@ class Render:
                     
                         objectX = round(cellIndex * self.sprite_size * self.size_multiplier)
                         objectY = round((len(objects) - sliceIndex - 1) * self.sprite_size * self.size_multiplier)
-            
+                        print("object x = " + str(cellIndex) + ", and the object y = " + str(sliceIndex))
+                        print("the slice is:")
+                        print(objects[sliceIndex])
                         objectImg = self.pygame.transform.scale(objectImg, (round(self.sprite_size * self.size_multiplier), round(self.sprite_size * self.size_multiplier)))
                         self.screen.blit(objectImg, (objectX, objectY))
                     
@@ -56,8 +57,8 @@ class Render:
                     playerImg = self.pygame.image.load(sprite_image_paths["player_1"])
                     playerImg = self.pygame.transform.scale(playerImg, (round(self.sprite_size * self.size_multiplier), round(self.sprite_size * self.size_multiplier)))
                     self.screen.blit(playerImg, (playerX, playerY))
-                    #print(objects)
-                    #print("bruh")
+            print(objects[0])
+            print("bruh")
                     
         elif(dimension == 1):
             #slice number is distance from top
@@ -97,7 +98,6 @@ class Render:
         elif(dimension == 2):
             #slice number is distance from left
             print("fuck you x2")
-        print(objects[0])
 
         self.pygame.display.update()
 
