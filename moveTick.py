@@ -80,10 +80,10 @@ def collision(objects, posX, posY, dim, sprite_size, size_multiplier):
                     wall_width = round(sprite_size * size_multiplier)
                     wallType = objects[sliceIndex][cellIndex][0][0]
 
-                    if(posX - leway > wallX and posX + leway < wallX+wall_width and posY - leway > wallY and posY + leway < wallY+wall_width or
-                           posX+(sprite_size* size_multiplier) - leway > wallX and posX+(sprite_size* size_multiplier) + leway < wallX+(sprite_size* size_multiplier) and posY - leway > wallY and posY + leway < wallY+wall_width or
+                    if(posX > wallX and posX  < wallX+wall_width and posY  > wallY and posY < wallY+wall_width or
+                           posX+(sprite_size* size_multiplier)  > wallX and posX+(sprite_size* size_multiplier)  < wallX+(sprite_size* size_multiplier) and posY  > wallY and posY  < wallY+wall_width or
                            posX > wallX and posX < wallX + wall_width and posY+(sprite_size* size_multiplier) > wallY and posY+(sprite_size* size_multiplier) < wallY+wall_width or
-                           posX+(sprite_size* size_multiplier) - leway > wallX and posX+(sprite_size* size_multiplier) + leway < wallX+wall_width and posY+(sprite_size* size_multiplier) - leway >wallY and posY+(sprite_size* size_multiplier) + leway <wallY+wall_width): #if its in the bounds
+                           posX+(sprite_size* size_multiplier)  > wallX and posX+(sprite_size* size_multiplier)  < wallX+wall_width and posY+(sprite_size* size_multiplier)  >wallY and posY+(sprite_size* size_multiplier)  <wallY+wall_width): #if its in the bounds
                         if(not isPassable(objects[sliceIndex][cellIndex][0][0])):
 
                             return(True, dim)
