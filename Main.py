@@ -60,6 +60,8 @@ class Main:
         self.mouseX = 0
         self.mouseY = 0
 
+        self.portalCounter = 0
+
 
         self.currentDim = 0 #current Dimension
 
@@ -82,7 +84,7 @@ class Main:
 
     def mainLoop(self):
         while True:
-            self.posX,self.posY,self.velX,self.velY,self.currentDim = moveTick.moveTick(self.posX, self.posY, self.velX, self.velY, self.currentDim, self.cells, SPRITE_SIZE,SIZE_MULTIPLIER, PLAYER_SIZE)
+            self.posX,self.posY,self.velX,self.velY,self.currentDim, self.portalCounter = moveTick.moveTick(self.posX, self.posY, self.velX, self.velY, self.currentDim, self.cells, SPRITE_SIZE,SIZE_MULTIPLIER, PLAYER_SIZE, self.portalCounter)
             for event in pygame.event.get():
                                                                                                                                                                                                                                                                                                         
                 if(event.type == pygame.QUIT):

@@ -56,11 +56,9 @@ def getLevelMap(paths):
     return(map, imageXW, imageYW)
 
 def getSpawnLocation(objects):
-    """
-    for sliceIndex in range(len(objects)):
+    """for sliceIndex in range(len(objects)):
         for cellIndex in range(len(objects[sliceIndex])):
             if(len(objects[sliceIndex][cellIndex])> 0):
-                if(len(objects[sliceIndex][cellIndex][0])>0): 
-                    if(objects[sliceIndex][cellIndex][0][0]=="spawn"):
-                        return(sliceIndex, cellIndex)"""
+                if(objects[sliceIndex][cellIndex][0]=="spawn"):
+                    return(sliceIndex, cellIndex)"""
     return(1,1)
