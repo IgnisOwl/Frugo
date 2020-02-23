@@ -74,7 +74,7 @@ class Main:
                     pygame.quit()
             
             
-            self.renderer.render(self.cells, IMAGE_PATHS)
+            self.renderer.render(self.cells, IMAGE_PATHS, self.currentDim, self.pos1, self.pos2)
             self.clock.tick(FPS)
 
 if __name__ == "__main__":

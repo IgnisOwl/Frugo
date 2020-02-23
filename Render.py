@@ -45,7 +45,7 @@ class Render:
                         self.screen.blit(objectImg, (objectX, objectY))
                     
                     
-                    playerImg = self.pygame.image.load(sprite_image_paths["player"])
+                    playerImg = self.pygame.image.load(sprite_image_paths["player_1"])
                     self.screen.blit(playerImg, (playerX, playerY))
                     
                 elif(dimension == 1):
