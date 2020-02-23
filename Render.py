@@ -79,13 +79,9 @@ class Render:
                             if(portalType == 0):
                                 objectImg = self.pygame.image.load(sprite_image_paths["portal_1"])
                             elif(portalType == 1):
-                                objectImg = self.pygame.image.load(sprite_image_paths["portal_2"])
-                            elif(portalType == 2):
                                 objectImg = self.pygame.image.load(sprite_image_paths["portal_3"])
-                            elif(portalType == 3):
-                                objectImg = self.pygame.image.load(sprite_image_paths["portal_4"])
                         elif(objectType == "goal"):
-                            objectImg = self.pygame.image.load(sprite_image_paths["goal"])
+                            objectImg = self.pygame.image.load(sprite_image_paths["side_goal"])
                         
                         objectX = round(renderCell * self.sprite_size * self.size_multiplier)
                         objectY = round((len(objects) - objects[renderSlice][renderCell][verticalBlockIndex][1] - 1)* self.sprite_size * self.size_multiplier)
