@@ -39,9 +39,9 @@ class Render:
                     
                         objectX = round(cellIndex * self.sprite_size * self.size_multiplier)
                         objectY = round((len(objects) - sliceIndex - 1) * self.sprite_size * self.size_multiplier)
-                        print("object x = " + str(cellIndex) + ", and the object y = " + str(sliceIndex))
-                        print("the slice is:")
-                        print(objects[sliceIndex])
+                        #print("object x = " + str(cellIndex) + ", and the object y = " + str(sliceIndex))
+                        #print("the slice is:")
+                        #print(objects[sliceIndex])
                         objectImg = self.pygame.transform.scale(objectImg, (round(self.sprite_size * self.size_multiplier), round(self.sprite_size * self.size_multiplier)))
                         self.screen.blit(objectImg, (objectX, objectY))
                     
