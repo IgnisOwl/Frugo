@@ -34,40 +34,40 @@ def getNewPlayerDat(pos1,pos2,vel1,vel2,objects,event,dim,sprite_size,size_multi
 
 def moveTick(pos1,pos2,velo1,velo2,height,wallX,wallY,wallType,event,dim):#velo 1 is left right, velo 2 is up down. dim is bool, 1 if there is y and if there is gravity
     hitWall = False
-    if event.type == event.KEYDOWN:
-        if event.key == event.K_A or event.key == event.K_LEFT:
+    if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_a or event.key == pygame.K_LEFT:
             velo1=-20
             if pos1+velo1 < wallX  and not wallType == 'portal':
                 for x in range(20):
-                    if pos1+19-x == wall:#going left check
+                    if pos1+19-x == wallX:#going left check
                         velo1 = 19-x
             pos1+=velo1
-        if event.key == event.K_D or event.key == event.K_RIGHT:
+        if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
             velo1=20
             if pos1+velo1 > wallX  and not wallType == 'portal':
                 for x in range(20):
-                    if pos1+19-x == wall:#going left check
+                    if pos1+19-x == wallX:
                         velo1 = 19-x
                         break
             pos1+=velo1
         if not dim:
-            if event.key == event.K_S or event.key == event.K_DOWN:
+            if event.key == pygame.K_s or event.key == pygame.K_DOWN:
                 velo2=20
                 if pos2+velo2 > wallY  and not wallY == 'portal':
                     for x in range(20):
-                        if pos2+19-x == wall:#going left check
+                        if pos2+19-x == wallY:
                             velo2 = 19-x
                 pos2+=velo2
-            if event.key == event.K_W or event.key == event.K_UP:
+            if event.key == pygame.K_w or event.key == pygame.K_UP:
                 velo2=-20
-                if pos2+velo2 < wall  and not wallType == 'portal':
+                if pos2+velo2 < wallY  and not wallType == 'portal':
                     for x in range(20):
-                        if pos2+19-x == wall:#going left check
+                        if pos2+19-x == wallY:#going left check
                             velo2 = 19-x
                 pos2+=velo2
         else:
-            if onGround(height,wall,dim,pos2):
-                if event.key == event.K_w or event.key == event.K_SPACE or event.key == event.K_UP:
+            if onGround(height,wallY,dim,pos2):
+                if event.key == pygame.K_w or event.key == pygame.K_SPACE or event.key == pygame.K_UP:
                     velo2=25
                     pos2+=velo2
             else:
@@ -75,18 +75,18 @@ def moveTick(pos1,pos2,velo1,velo2,height,wallX,wallY,wallType,event,dim):#velo 
                 if velo2<-40:
                     velo2=-40
                 pos2+=velo2
-    elif event.type == event.KEYUP:
-        if event.key == event.K_A or event.key == event.K_LEFT:
+    elif event.type == pygame.KEYUP:
+        if event.key == pygame.K_a or event.key == pygame.K_LEFT:
             velo1=0
-        if event.key == event.K_D or event.key == event.K_RIGHT:
+        if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
             velo1=0
         if not dim:
-            if event.key == event.K_D or event.key == event.K_DOWN:
+            if event.key == pygame.K_d or event.key == pygame.K_DOWN:
                 velo2=0
-            if event.key == event.K_S or event.key == event.K_UP:
+            if event.key == pygame.K_s or event.key == pygame.K_UP:
                 velo2=-0
         else:
-            if onGround(height,wall,dim,pos2):
+            if onGround(height,wallY,dim,pos2):
                 if event.key == event.K_w or event.key == event.K_SPACE or event.key == event.K_UP:
                     velo2=25
                     pos2+=velo2
