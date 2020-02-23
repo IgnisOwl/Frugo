@@ -2,7 +2,6 @@ import pygame
 import Render
 import GenerateMap
 import moveTick
-import PortalShoot
 
 SCREEN_X = 950
 SCREEN_Y = 550
@@ -41,31 +40,33 @@ class Main:
         self.renderer = Render.Render(self.screen, pygame, COLORS, SPRITE_SIZE, SIZE_MULTIPLIER)
         self.mouseX = 0
         self.mouseY = 0
+        print(self.loadLevel(2))
+        self.cells = []
         self.inventory = [] #inventory is going to be organized like so: t, so depending on the block type you will know what to place down
        
     def mousePos(self):
         return pygame.mouse.get_pos()
 
     def loadLevel(self, level):
-        if(level == 1):
+        if(level == 2):
             sizeX = 15
             sizeY = 10
             imagePaths = [""]
 
             for x in range(sizeX):
-                imagePaths.append("l1/%d" % (x)) #for each slic add one
+                imagePaths.append("Levels/l1/%d" % (x)) #for each slic add one
 
-        return(self.GenerateMap.getLevelMap(imagePaths))
+        return(GenerateMap.getLevelMap(imagePaths))
 
     def mainLoop(self):
         while True:
             for event in pygame.event.get():
                                                                                                                                                                                                                                                                                                         
-                if(event.type == pygame.QUIT):
+                if(event.type == pygame.QUIT()):
                     pygame.quit()
             
             
-            self.renderer.render(self.items, IMAGE_PATHS)
+            #self.renderer.render(self.cells, IMAGE_PATHS)
             self.clock.tick(FPS)
 
 if __name__ == "__main__":
