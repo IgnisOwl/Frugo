@@ -49,6 +49,8 @@ class Main:
         self.pos2 = 0
         self.pz = 0 #player z, will not change like y does
 
+        self.currentDim = 0 #current Dimension
+
         self.cells = self.loadLevel(3)
         self.inventory = [] #inventory is going to be organized like so: t, so depending on the block type you will know what to place down
        
@@ -66,7 +68,7 @@ class Main:
     def mainLoop(self):
         while True:
             for event in pygame.event.get():
-                self.pos1,self.pos2,self.vel1,self.vel2 = moveTick.moveTick(self.pos1, self.pos2, self.vel1, self.vel2, self.pz, 0)#idk wut pwidth and pheight are
+                self.pos1,self.pos2,self.vel1,self.vel2 = moveTick.getNewPlayerDat(self.pos1, self.pos2, self.vel1, self.vel2, self.cells,event,self.currentDim,SPRITE_SIZE,SIZE_MULTIPLIER)
                                                                                                                                                                                                                                                                                                         
                 if(event.type == pygame.QUIT):
                     pygame.quit()
