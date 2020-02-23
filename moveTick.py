@@ -66,8 +66,9 @@ def moveTick(posX, posY, velX, velY, dim, objects, sprite_size, size_multiplier,
             if(velY <= maxSpeed):
                 velY = velY + acceleration
         
-        #renderSlice = round(posY/sprite_size) #must round to nearest factor of the sprite size, so each row
-        renderSlice = 8
+        renderSlice = round(posY/(sprite_size*size_multiplier)) #must round to nearest factor of the sprite size, so each row
+        #renderSlice = 8
+        print(renderSlice)
     
     if(dim == 1):
         velX, velY = gravity(velX, velY, damping); #we want the gravity to overcome the damp factor
@@ -153,8 +154,8 @@ def collision(objects, posX, posY, dim, sprite_size, size_multiplier, player_siz
                         if(not isPassable(wallType)):
                             return(True, dim, portalCounter)
                         else:
-                            print(objects[renderSlice][renderCell][verticalBlockIndex][0])
-                            if(isPortalD(objects[renderSlice][renderCell][verticalBlockIndex]) == True):
+                            #print(isPortalD(objects[renderSlice][renderCell][verticalBlockIndex]))
+                            if(isPortalD(objects[renderSlice][renderCell][verticalBlockIndex])[0] == True):
                             #if(objects[renderSlice][renderCell][verticalBlockIndex][0] =="portal"):
                                 portalCounter+=1 #for the countdown
                                 #print(portalCounter)
