@@ -44,6 +44,13 @@ class Render:
                         objectImg = self.pygame.transform.scale(objectImg, (round(self.sprite_size * self.size_multiplier), round(self.sprite_size * self.size_multiplier)))
                         self.screen.blit(objectImg, (objectX, objectY))
                     
+                    else:
+                        objectX = round(cellIndex * self.sprite_size * self.size_multiplier)
+                        objectY = round((len(objects) - sliceIndex) * self.sprite_size * self.size_multiplier)
+                        
+                        objectImg = self.pygame.image.load(sprite_image_paths["floor"])
+                        self.screen.blit(objectImg, (objectX, objectY))
+                    
                     
                     playerImg = self.pygame.image.load(sprite_image_paths["player_1"])
                     self.screen.blit(playerImg, (playerX, playerY))

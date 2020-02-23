@@ -25,6 +25,7 @@ SIZE_MULTIPLIER = 1 #size multiplier, to make bigger or smaller
 
 #cell list is like: [[[[t,h], [t,h]]]] - thre reason we need height is because if we wanted an empty space right below solid block.
 CELLS = [[[[ ]]]] #y[x[cell[th[]]]]
+#also portals have [t,h,p] as in type, height, portal type (1 through 4)
 
 #dictionary of all the paths to sprites
 IMAGE_PATHS = {
@@ -36,6 +37,7 @@ IMAGE_PATHS = {
     "portal_3" : "portal_3.png",
     "portal_4" : "portal_4.png",
     "spawn" : "spawn.png",
+    "floor": "floor.png",
     
 }
 
