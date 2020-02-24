@@ -13,21 +13,23 @@ class Render:
         self.screen.fill(self.colors["BLACK"])
         #self.checkwin(playerX, playerY, 3) #current level - automatic later
         #get the current object we are handling in all the objects provided
-        wintext = self.pygame.image.load(sprite_image_paths["assets/index.jpeg"])
+        wintext = self.pygame.image.load(sprite_image_paths["index"])
+        levelvarthing = 3
+        print(str(playerX) + "bruh" + str(playerY))
         if(levelvarthing == 1):
-            distance = xpos + ypos - 2
+            distance = playerX + playerY - 2
             if distance <= 20:
                 self.screen.blit(wintext, (150, 150))
         elif(levelvarthing == 2):
-            distance = xpos - 2 + ypos - 5
+            distance = playerX - 2 + playerY - 5
             if distance <= 20:
                 self.screen.blit(wintext, (150, 150))
         elif(levelvarthing == 3):
-            distance = xpos + math.sqrt((ypos - 9)*(ypos-9))
-            if distance <= 20:
-                self.screen.blit(wintext, (150, 150))
+            if( playerX <= 30 and playerY >= 300):
+                for i in range(999):
+                    self.screen.blit(wintext, (150, 150))
         elif(levelvarthing == 4):
-            distance = math.sqrt(xpos*xpos)+math.sqrt((ypos-14)*(ypos-14))
+            distance = math.sqrt(playerX*playerX)+math.sqrt((playerY-14)*(playerY-14))
             if distance <= 20:
                 self.screen.blit(wintext, (150, 150))
 

@@ -44,6 +44,7 @@ IMAGE_PATHS = {
     "spawn" : "assets/spawn.png",
     "background": "assets/background.png",
     "side_background": "assets/gray_background.png",
+    "index": "assets/index.jpeg",
 
 }
 
