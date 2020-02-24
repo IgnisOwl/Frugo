@@ -115,6 +115,7 @@ def collision(objects, posX, posY, dim, sprite_size, size_multiplier, player_siz
                     wall_width = round(sprite_size * size_multiplier)
                     wallType = objects[sliceIndex][cellIndex][0][0]
 
+                    #in the future make it return the side(s) that the collision is happening at by using the players position relative to the wall, locking only future input velocities to inside the wall.
                     if(posX > wallX and posX  < wallX+wall_width and posY  > wallY and posY < wallY+wall_width or
                            posX+(player_size* size_multiplier)  > wallX and posX+(player_size* size_multiplier)  < wallX+(player_size* size_multiplier) and posY  > wallY and posY  < wallY+wall_width or
                            posX > wallX and posX < wallX + wall_width and posY+(player_size* size_multiplier) > wallY and posY+(player_size* size_multiplier) < wallY+wall_width or
