@@ -150,10 +150,11 @@ class Render:
                     objectImg = self.pygame.image.load(sprite_image_paths["side_background"])
                     objectImg = self.pygame.transform.scale(objectImg, (round(self.sprite_size * self.size_multiplier), round(self.sprite_size * self.size_multiplier)))
                     self.screen.blit(objectImg, (objectX, objectY))
-                    
+            #cycles through slices, cell num is already set, based on the portal, but slice and cell are inverted, because it is a column, not a row.
             for slicenum in range(len(objects)) :
                 if(len(objects[slicenum][cellnum])> 0):
                     #verticalBlockIndex is the index for how many solid blocks the current block is from the top block
+                    #cycles through blocks within each slice, for the given cell
                     for verticalBlockIndex in range(len(objects[slicenum][cellnum])):
                         objectType = objects[slicenum][cellnum][verticalBlockIndex][0]
                         
